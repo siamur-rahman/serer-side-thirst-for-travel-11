@@ -36,6 +36,19 @@ async function run() {
          res.send(users);
       })
 
+
+      //get api single user
+      app.get('/services/:id', async (req, res) => {
+         const id = req.params.id;
+         console.log('load user with id', id);
+         const query = { _id: ObjectId(id) };
+         const user = await servicesCollection.findOne(query)
+         res.send(user);
+      })
+
+
+
+
       //post apii
       app.post('/services', async (req, res) => {
 
