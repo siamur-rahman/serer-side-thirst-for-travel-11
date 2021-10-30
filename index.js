@@ -7,7 +7,7 @@ const cors = require('cors');
 
 ;
 
-// const ObjectId = require('mongodb').ObjectId;
+const ObjectId = require('mongodb').ObjectId;
 const app = express();
 
 //middlewere
@@ -32,18 +32,19 @@ async function run() {
       //get api
       app.get('/services', async (req, res) => {
          const cursor = servicesCollection.find({});
-         const users = await cursor.toArray();
-         res.send(users);
+         const services = await cursor.toArray();
+         res.send(services);
       })
 
 
       //get api single user
       app.get('/services/:id', async (req, res) => {
          const id = req.params.id;
-         console.log('load user with id', id);
+         // console.log('load user with id', id);
          const query = { _id: ObjectId(id) };
-         const user = await servicesCollection.findOne(query)
-         res.send(user);
+         const service = await servicesCollection.findOne(query);
+         res.send(service);
+         // res.send("1");
       })
 
 
@@ -54,7 +55,7 @@ async function run() {
 
          const newUser = req.body;
          const result = await servicesCollection.insertOne(newUser);
-         console.log('got new user', req.body);
+         // console.log('got new user', req.body);
          console.log('added user', result);
          res.json(result);
       })
