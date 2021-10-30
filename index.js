@@ -26,13 +26,8 @@ async function run() {
       await client.connect();
       // console.log(`connetcted to db`);
 
-
-
-
       const database = client.db("tourists");
       const servicesCollection = database.collection("spots");
-
-
 
       //get api
       app.get('/services', async (req, res) => {
@@ -42,7 +37,7 @@ async function run() {
       })
 
       //post apii
-      app.post('/users', async (req, res) => {
+      app.post('/services', async (req, res) => {
 
          const newUser = req.body;
          const result = await servicesCollection.insertOne(newUser);
