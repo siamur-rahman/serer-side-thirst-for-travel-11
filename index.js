@@ -28,10 +28,17 @@ async function run() {
 
       const database = client.db("tourists");
       const servicesCollection = database.collection("spots");
+      const ordersCollection = database.collection("orders");
 
       //get api
       app.get('/services', async (req, res) => {
          const cursor = servicesCollection.find({});
+         const services = await cursor.toArray();
+         res.send(services);
+      })
+      //get api
+      app.get('/orders', async (req, res) => {
+         const cursor = ordersCollection.find({});
          const services = await cursor.toArray();
          res.send(services);
       })
@@ -57,6 +64,16 @@ async function run() {
          res.json(result);
 
       })
+      // //post apii
+      // app.post('/services', async (req, res) => {
+
+      //    const newUser = req.body;
+      //    const result = await servicesCollection.insertOne(newUser);
+      //    // console.log('got new user', req.body);
+      //    console.log('added user', result);
+      //    res.json(result);
+
+      // })
       //delete api
       app.delete('/services/:id', async (req, res) => {
 
