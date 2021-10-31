@@ -64,16 +64,6 @@ async function run() {
          res.json(result);
 
       })
-      // //post apii
-      // app.post('/services', async (req, res) => {
-
-      //    const newUser = req.body;
-      //    const result = await servicesCollection.insertOne(newUser);
-      //    // console.log('got new user', req.body);
-      //    console.log('added user', result);
-      //    res.json(result);
-
-      // })
       //delete api
       app.delete('/services/:id', async (req, res) => {
 
